@@ -3,6 +3,7 @@ import axios from "axios";
 export const GET_USER = '[USER] GET USER';
 export const GET_USERS = '[USER] GET USERS';
 export const SELECT_USER = '[USER] SELECT USER';
+export const SEARCH_USER = '[USER] SEARCH USER';
 export function getUsers() {
     return dispatch =>
         axios.get('https://api.github.com/users')
@@ -35,4 +36,17 @@ export function selectedUser(data, callback) {
     }
 
 
+}
+export function searchUser(data) {
+    return dispatch => {
+        axios.get('https://api.github.com/users/' + data)
+            .then(res => {
+                console.log(res)
+                dispatch({
+                    type: SEARCH_USER,
+                    payload: res.data
+                })
+            }).catch(err => console.log('error fetching users', err))
+
+    }
 }

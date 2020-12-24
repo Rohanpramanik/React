@@ -1,9 +1,10 @@
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import React from 'react'
-import { getUser } from '../../store/actions';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { getUser, searchUser } from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     inputRoot: {
@@ -46,30 +47,61 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
+    result: {
+        position: 'absolute',
+        width: 500,
+        maxHeight: 600,
+        minHeight: 10,
+        background: '#ddd'
+    },
+    icon:
+    {
+        width: 25,
+        borderRadius: 50,
+        margin: 5
+    }
+
 }))
+
 
 
 function Search() {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const searchUsername = val => {
-        dispatch(getUser(val))
-    }
+    const [Username, setUsername] = useState("")
+    const data = useSelector(({ HomeScreen }) => HomeScreen.search)
+    useEffect(() => {
+        if (Username && Username !== "")
+            dispatch(searchUser(Username))
+
+    }, [Username])
+
     return (
         <div className={classes.search}>
             <div className={classes.searchIcon}>
                 <SearchIcon />
             </div>
             <InputBase
-                placeholder="Search…"
+                placeholder="Username…"
                 classes={{
                     root: classes.inputRoot,
                     input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
-                onChange={ev => searchUsername(ev.target.value)}
+                onChange={ev => setUsername(ev.target.value)}
             />
-        </div>
+            {(Username && Username !== "") && (<div className={classes.result}>
+                <List>
+                    <ListItem>
+                        <ListItemAvatar > <img src={data.avatar_url} className={classes.icon} />
+                        </ListItemAvatar>
+                        <ListItemText primary={data.login}></ListItemText>
+                    </ListItem>
+                </List>
+            </div>)
+            }
+        </div >
     )
 }
 

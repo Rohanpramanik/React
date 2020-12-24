@@ -3,7 +3,8 @@ import * as Actions from '../actions';
 const initialState = {
     users: [],
     user: {},
-    selectedUser: {}
+    selectedUser: {},
+    search: {}
 }
 const HomeScreenReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -22,7 +23,13 @@ const HomeScreenReducer = (state = initialState, action) => {
                 ...state,
                 selectedUser: action.payload
             }
+        case Actions.SEARCH_USER:
+            return {
+                ...state,
+                search: action.payload
+            }
         default: return state
     }
 }
+
 export default HomeScreenReducer

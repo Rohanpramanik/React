@@ -2,10 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
+
 import Typography from '@material-ui/core/Typography';
-import MenuIcon from '@material-ui/icons/Menu';
 import Search from "./Search";
+import git from "./github.png"
+// const git = require("./github.png")
 
 
 
@@ -21,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
     },
   },
+  icon: {
+    width: 40,
+
+  }
 }));
 
 export default function PrimarySearchAppBar() {
@@ -30,17 +35,10 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
+          <img src={git} className={classes.icon} />
 
-            <MenuIcon />
-          </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            GitHub
           </Typography>
           <Search />
 
