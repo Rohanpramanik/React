@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as Actions from '../../../store/actions'
 const HomeScreen = (props) => {
     const dispatch = useDispatch();
+    
     const handleClick = () => {
         dispatch(Actions.testfunc({ heel: "hello" }))
     }

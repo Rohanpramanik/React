@@ -1,7 +1,8 @@
 import * as Actions from '../actions';
 
 const initialState = {
-    data: null
+    data: null,
+    hhh:null
 }
 const HomeScreenReducer = (state = initialState, action) => {
     switch (action.type) {
