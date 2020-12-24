@@ -2,37 +2,49 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
+import Search from "./Search";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  grow: {
     flexGrow: 1,
-  },
-  menuButton: {
+  }, menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1,
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
   },
 }));
 
-export default function Header() {
+export default function PrimarySearchAppBar() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+          >
+
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
+          <Typography className={classes.title} variant="h6" noWrap>
+            Material-UI
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Search />
+
+
+
+
         </Toolbar>
       </AppBar>
     </div>
