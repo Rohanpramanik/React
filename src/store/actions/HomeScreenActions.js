@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const GET_USER = '[USER] GET USER';
 export const GET_USERS = '[USER] GET USERS';
-
+export const SELECT_USER = '[USER] SELECT USER';
 export function getUsers() {
     return dispatch =>
         axios.get('https://api.github.com/users')
@@ -24,4 +24,15 @@ export function getUser(name) {
                     payload: res.data
                 })
             }).catch(err => console.log('error fetching user', err))
+}
+export function selectedUser(data, callback) {
+    return dispatch => {
+        dispatch({
+            type: SELECT_USER,
+            payload: data
+        })
+        callback()
+    }
+
+
 }

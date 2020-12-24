@@ -2,7 +2,8 @@ import * as Actions from '../actions';
 
 const initialState = {
     users: [],
-    user: {}
+    user: {},
+    selectedUser: {}
 }
 const HomeScreenReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -15,6 +16,11 @@ const HomeScreenReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: action.payload
+            }
+        case Actions.SELECT_USER:
+            return {
+                ...state,
+                selectedUser: action.payload
             }
         default: return state
     }
