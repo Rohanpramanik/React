@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import * as Actions from '../../../store/actions'
+import Header from '../../common/Header'
 const HomeScreen = (props) => {
     const dispatch = useDispatch();
     
@@ -8,7 +9,7 @@ const HomeScreen = (props) => {
         dispatch(Actions.testfunc({ heel: "hello" }))
     }
     return <div>
-        <button onClick={handleClick}>click</button>
+         <Header/>
     </div>
 }
 export default HomeScreen;
