@@ -2,10 +2,8 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import React from 'react'
-
-
-
-
+import { getUser } from '../../store/actions';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     inputRoot: {
@@ -52,7 +50,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Search() {
-    const classes = useStyles()
+    const classes = useStyles();
+    const dispatch = useDispatch();
+    const searchUsername = val => {
+        dispatch(getUser(val))
+    }
     return (
         <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -65,6 +67,7 @@ function Search() {
                     input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
+                onChange={ev => searchUsername(ev.target.value)}
             />
         </div>
     )

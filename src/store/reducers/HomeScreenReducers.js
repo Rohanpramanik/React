@@ -1,17 +1,21 @@
 import * as Actions from '../actions';
 
 const initialState = {
-    data: null,
-    hhh:null
+    users: [],
+    user: {}
 }
 const HomeScreenReducer = (state = initialState, action) => {
     switch (action.type) {
-        case Actions.test:
+        case Actions.GET_USER:
             return {
                 ...state,
-                data: action.payload
+                user: action.payload
             }
-
+        case Actions.GET_USERS:
+            return {
+                ...state,
+                users: action.payload
+            }
         default: return state
     }
 }
